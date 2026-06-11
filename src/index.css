@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --summit-navy: #0a0f1c;
+    --summit-black: #000000;
+    --summit-blue: #4a6cf7;
+    --summit-blue-hover: #3a5ce5;
+    --summit-light-blue: #7b95ff;
+    --white: #ffffff;
+    --gray-100: #e5e7eb;
+    --gray-200: #9ca3af;
+    --gray-300: #6b7280;
+    --gray-400: #374151;
+    --surface-dark: #111827;
+    --surface-light: #1f2937;
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --background: 222 47% 7%;
+    --foreground: 0 0% 100%;
+    --card: 220 43% 8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 43% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 227 91% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 30% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 20%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 227 91% 63%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 227 91% 63%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#0a0f1c] text-white antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #4a6cf7 0%, #7b95ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-summit-navy {
+    background-color: #0a0f1c;
+  }
+
+  .bg-summit-black {
+    background-color: #000000;
+  }
+
+  .bg-summit-blue {
+    background-color: #4a6cf7;
+  }
+
+  .bg-surface-dark {
+    background-color: #111827;
+  }
+
+  .bg-surface-light {
+    background-color: #1f2937;
+  }
+
+  .border-glass {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .glow-blue {
+    box-shadow: 0px 0px 20px rgba(74, 108, 247, 0.4);
+  }
+
+  .card-hover {
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0f1c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a6cf7;
+}
+
+/* Selection */
+::selection {
+  background: rgba(74, 108, 247, 0.3);
+  color: white;
+}
+
+/* Scroll animation for marquee */
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 30s linear infinite;
+}
