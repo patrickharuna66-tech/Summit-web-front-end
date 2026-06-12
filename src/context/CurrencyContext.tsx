@@ -1,22 +1,23 @@
-import { createContext, useContext } from 'react';
-import type { ReactNode } from 'react';
-import { useCurrency } from '@/hooks/useCurrency';
+import React, { createContext, useContext, ReactNode } from 'react'
 
-type CurrencyContextType = ReturnType<typeof useCurrency>;
-
-const CurrencyContext = createContext<CurrencyContextType | null>(null);
-
-export function CurrencyProvider({ children }: { children: ReactNode }) {
-  const currency = useCurrency();
-  return (
-    <CurrencyContext.Provider value={currency}>
-      {children}
-    </CurrencyContext.Provider>
-  );
+type CurrencyContextType = {
+  currency: string
+  setCurrency: (currency: string) => void
 }
 
-export function useCurrencyContext() {
-  const context = useContext(CurrencyContext);
-  if (!context) throw new Error('useCurrencyContext must be used within CurrencyProvider');
-  return context;
+const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined)
+
+export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
+  const [currency, setCurrency] = React.useState('USD')
+  return (
+    <CurrencyContext.Provider value={{ currency, setCurrency }}>
+      {children}
+    </CurrencyContext.Provider>
+  )
+}
+
+export const useCurrency = () => {
+  const context = useContext(CurrencyContext)
+  if (!context) throw new Error('useCurrency must be used within CurrencyProvider')
+  return context
 }
