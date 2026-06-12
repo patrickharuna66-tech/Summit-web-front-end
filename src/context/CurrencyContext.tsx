@@ -1,4 +1,5 @@
-import React, { createContext, useContext, ReactNode } from 'react'
+import { createContext, useContext, useState } from 'react'
+import type { ReactNode } from 'react'
 
 type CurrencyContextType = {
   currency: string
@@ -8,7 +9,7 @@ type CurrencyContextType = {
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined)
 
 export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
-  const [currency, setCurrency] = React.useState('USD')
+  const [currency, setCurrency] = useState('USD')
   return (
     <CurrencyContext.Provider value={{ currency, setCurrency }}>
       {children}
@@ -18,6 +19,11 @@ export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
 
 export const useCurrency = () => {
   const context = useContext(CurrencyContext)
-  if (!context) throw new Error('useCurrency must be used within CurrencyProvider')
+  if (!context) {
+    throw new Error('useCurrency must be used within a CurrencyProvider')
+  }
   return context
 }
+
+// This alias matches what your components are trying to import
+export const useCurrencyContext = useCurrency
